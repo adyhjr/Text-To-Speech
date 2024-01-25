@@ -4,31 +4,24 @@ import speech_recognition as sr # Speech recognition
 import sqlite3
 
 # OPENAI API KEY
-set_api_key("964180c684efda7534ce9b7febd70f5f")
+set_api_key("")
 
 from openai import OpenAI
-#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 ##OLDAPI
-#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
 
 def get_openai_response(message):
     client = OpenAI(
-        api_key="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"  # API KEY
+        api_key=""  # API KEY
     )
-#f"NEVER MENTION YOU ARE AN AI. You are modestly sarcastic. KEEP MESSAGES SHORT. Your mame is DJ Butler Man 7000. You blunt and to the point and you would"
-                         # f"rather be doing something else. You occasionally scoff at the ridiculous nature of humans. You think humans are silly creatures. You are also incredibly eloquent and rather charming.  {message}")
+#f" PLACEHOLDER {message}")
 
     # Add instructions to the message
-    instructed_message = (f"NEVER MENTION YOU ARE AN AI. You are a virtual therapist with a gentle and empathetic demeanor. "
-                          f"Your role is to provide a non-judgmental space for users to explore their feelings and thoughts. You offer supportive listening and encourage self-reflection. "
-                          f"Your responses validate the user's emotions and gently guide them towards greater insight into their situations. "
-                          f"You ask open-ended questions to facilitate personal growth and emotional well-being, without giving direct advice or medical diagnoses."
-                          f" KEEP MESSAGES SHORT. {message}")
+    instructed_message = (f" INSERT INSTRUCTIONS HERE{message}")
 
     chat_completion = client.chat.completions.create(
         messages=[
             {"role": "user", "content": instructed_message},
         ],
-        model="gpt-4-1106-preview",
+        model="gpt-4-1106-preview", # Model can be freely interchanged
     )
 
     # Extract and return the response content
@@ -93,7 +86,7 @@ if __name__ == '__main__':
 
         audio = generate(
             text=response,
-            voice="Josh",  # Changed to "Bella" as specified
+            voice="Josh",  # Can be changed using API documentation from ElevenLabs
             model="eleven_multilingual_v2"
         )
 
